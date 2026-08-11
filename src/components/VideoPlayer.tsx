@@ -253,6 +253,24 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ video }) => {
         </a>
       </div>
 
+      {/* Embed Mode Explanation Banner */}
+      {playerMode === "embed" && (
+        <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-amber-200">
+          <div className="flex items-center gap-2">
+            <Info className="w-4 h-4 text-amber-400 flex-shrink-0" />
+            <span>
+              <strong>Google Drive Embed Notice:</strong> Dummy sample IDs show Google&apos;s <em>&quot;File requested does not exist&quot;</em>. Paste your own public Google Drive link to test your video embed!
+            </span>
+          </div>
+          <button
+            onClick={() => setPlayerMode("custom")}
+            className="px-3 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-semibold border border-amber-500/40 text-[11px] whitespace-nowrap"
+          >
+            Switch to Custom Player
+          </button>
+        </div>
+      )}
+
       {/* Main Player Display Container */}
       <div
         ref={containerRef}
