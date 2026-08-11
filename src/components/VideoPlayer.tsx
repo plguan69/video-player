@@ -255,21 +255,19 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ video }) => {
 
       {/* Embed Mode Explanation Banner & Quick Loader */}
       {playerMode === "embed" && (
-        <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3.5 flex flex-col gap-2.5 text-xs text-amber-200">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <div className="flex items-center gap-2">
-              <Info className="w-4 h-4 text-amber-400 flex-shrink-0" />
-              <span>
-                <strong>Google Drive Embed Mode:</strong> Make sure your Google Drive file is set to <em>&quot;Anyone with the link can view&quot;</em>.
-              </span>
-            </div>
-            <button
-              onClick={() => setPlayerMode("custom")}
-              className="px-3 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-semibold border border-amber-500/40 text-[11px] whitespace-nowrap"
-            >
-              Switch to Custom HTML5 Player
-            </button>
+        <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-amber-200">
+          <div className="flex items-center gap-2">
+            <Info className="w-4 h-4 text-amber-400 flex-shrink-0" />
+            <span>
+              <strong>Notice:</strong> Google Drive blocks iframe embedding on external sites for certain files (<code className="bg-amber-500/20 text-amber-300 px-1 py-0.5 rounded font-mono">frame-ancestors &apos;none&apos;</code>). Switch to <strong>Custom HTML5 Player</strong> to stream directly!
+            </span>
           </div>
+          <button
+            onClick={() => setPlayerMode("custom")}
+            className="px-3.5 py-1.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold border border-cyan-400 shadow-md text-xs whitespace-nowrap"
+          >
+            Switch to Custom Player Engine
+          </button>
         </div>
       )}
 
