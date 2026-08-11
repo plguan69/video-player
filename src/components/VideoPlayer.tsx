@@ -253,21 +253,23 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ video }) => {
         </a>
       </div>
 
-      {/* Embed Mode Explanation Banner */}
+      {/* Embed Mode Explanation Banner & Quick Loader */}
       {playerMode === "embed" && (
-        <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-amber-200">
-          <div className="flex items-center gap-2">
-            <Info className="w-4 h-4 text-amber-400 flex-shrink-0" />
-            <span>
-              <strong>Google Drive Embed Notice:</strong> Dummy sample IDs show Google&apos;s <em>&quot;File requested does not exist&quot;</em>. Paste your own public Google Drive link to test your video embed!
-            </span>
+        <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3.5 flex flex-col gap-2.5 text-xs text-amber-200">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <Info className="w-4 h-4 text-amber-400 flex-shrink-0" />
+              <span>
+                <strong>Google Drive Embed Mode:</strong> Make sure your Google Drive file is set to <em>&quot;Anyone with the link can view&quot;</em>.
+              </span>
+            </div>
+            <button
+              onClick={() => setPlayerMode("custom")}
+              className="px-3 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-semibold border border-amber-500/40 text-[11px] whitespace-nowrap"
+            >
+              Switch to Custom HTML5 Player
+            </button>
           </div>
-          <button
-            onClick={() => setPlayerMode("custom")}
-            className="px-3 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-semibold border border-amber-500/40 text-[11px] whitespace-nowrap"
-          >
-            Switch to Custom Player
-          </button>
         </div>
       )}
 
@@ -284,6 +286,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ video }) => {
             src={embedUrl}
             className="w-full h-full border-0"
             allow="autoplay; encrypted-media; fullscreen"
+            referrerPolicy="no-referrer"
             allowFullScreen
           />
         ) : (

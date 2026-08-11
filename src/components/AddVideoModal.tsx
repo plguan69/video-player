@@ -21,11 +21,14 @@ export const AddVideoModal: React.FC<AddVideoModalProps> = ({ isOpen, onClose, o
 
   // Extract file ID from full share link or raw ID
   const extractFileId = (input: string) => {
-    const match = input.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+    const cleanInput = input.trim();
+    const match = cleanInput.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
     if (match && match[1]) return match[1];
-    const idMatch = input.match(/id=([a-zA-Z0-9_-]+)/);
+    const idMatch = cleanInput.match(/[?&]id=([a-zA-Z0-9_-]+)/);
     if (idMatch && idMatch[1]) return idMatch[1];
-    return input.trim();
+    const openMatch = cleanInput.match(/open\?id=([a-zA-Z0-9_-]+)/);
+    if (openMatch && openMatch[1]) return openMatch[1];
+    return cleanInput;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
